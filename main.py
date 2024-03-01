@@ -1,6 +1,4 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
-from pprint import pprint
-from urllib.request import urlopen
 
 # Для начала определим настройки запуска
 hostName = "localhost"  # Адрес для доступа по сети
@@ -14,10 +12,8 @@ class MyServer(BaseHTTPRequestHandler):
     """
 
     def __get_html_content(self):
-        url = "index.html"
-        html = urlopen(url).read()
-
-        return f"""{html}"""
+        with open('index.html', 'r', encoding='utf-8') as file:
+            return file.read()
 
     def do_GET(self):
         """ Метод для обработки входящих GET-запросов """
